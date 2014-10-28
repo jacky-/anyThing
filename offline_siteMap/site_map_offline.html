@@ -103,6 +103,11 @@ function removeClass(obj, cls) {
 <script id="sysPageItem" type="text/html">
 		<h2><%= sysName %></h2>
 		<p>线上地址：<a href=<%= PRUD_URL %>><%= PRUD_URL %></a></p>
+		<% if(account) { %>
+		<div class="account">
+			用户名：<span><%= account.userName %></span>密码：<span> <%= account.password %> </span>
+		</div>
+		<% } %>
 		<ul class="sys-pages-list">
 			<% for (var pg in pages) { %>
 				<li class="sys-page-item" data-pagecode="<%= pg %>">
