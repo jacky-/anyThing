@@ -8,6 +8,23 @@ overflow:hidden;}
 .sys-item h2{text-align:center;}
 .siteMap-manNav,.siteMap-content{padding-bottom:1000px;margin-bottom:-1000px;}
 .siteMap-manNav{float:left;padding-top:20px;margin-left:20px;}
+.nv_verson{text-align: center;}
+.verson_item{
+	padding: 3px 5px;
+	margin: 3px 5px;
+	display: inline-block;
+	background: #3385ff;
+	border-radius: 3px;
+	color: #fff;
+	cursor:pointer;
+}
+.verson_item:hover{
+	background: #33B9FF
+}
+.verson_item.active{
+	background: #F53F1E;
+	cursor: default;
+}
 .nav-item{/* padding:0 40px; */
 border-left:6px solid #eee;border-right:6px solid #eee;margin-bottom:5px;width:190px;transition:border-color .3s ease 0s,color .3s ease 0s;line-height:40px;cursor:pointer;text-indent:40px;}
 .nav-item.cur{color:#06c;font-weight:bold;border-color:#ccc;}
