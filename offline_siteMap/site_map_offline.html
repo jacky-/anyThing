@@ -12,7 +12,7 @@
 
 	</ul>
 	<ul class="siteMap-content " id ="siteMap_manContent">
-		<li class="sys-item" id="offline_group_buying" data-pagecode="offline_group_buying" style="display: block;">
+<!-- 		<li class="sys-item" id="offline_group_buying" data-pagecode="offline_group_buying" style="display: block;">
 			<h2>团购业务员系统</h2>
 			<p>线上地址：<a href=""></a></p>
 
@@ -35,7 +35,7 @@
 						<a href="http://prototype.dev.sh.ctriptravel.com/code_packet/offline_group_buying/index.html">dev</a>
 					</li>
 			</ul>
-		</li>
+		</li> -->
 	</ul>
 	</div>
 	<div id="overLay" class="overLay"></div>
@@ -112,7 +112,7 @@ function removeClass(obj, cls) {
 		<li class="nav-item" data-type=<%= kk %> ><%= data[kk].sysName %></li>
 	<%}%>
 </script>
-<script id="sysPageItem" type="text/html">
+<script id="sysPageVersion" type="text/html">
 		<h2><%= sysName %></h2>
 		<p>线上地址：<a href=<%= PRUD_URL %>><%= PRUD_URL %></a></p>
 		<% if(account) { %>
@@ -120,16 +120,21 @@ function removeClass(obj, cls) {
 			用户名：<span><%= account.userName %></span>密码：<span> <%= account.password %> </span>
 		</div>
 		<% } %>
-		<ul class="sys-pages-list">
-			<% for (var pg in pages) { %>
-				<li class="sys-page-item" data-pagecode="<%= pg %>">
-					<img data-src=<%= pages[pg].imgSrc %> >
-					<h6><%= pages[pg].pageName%></h6>
-					<a href=<%= pages[pg].ui_URL%>>ui</a>
-					<a href=<%= pages[pg].dev_URL%>>dev</a>
-				</li>
+		<ul class="nv_version">
+			<% for (var version in pages) { %>
+				<li class="version_item" ><h4 data-pageversion="<%= version %>" ><%= version.replace(/.(\d+).+/g,'$1')%>版</h4></li>
 			<%}%>
 		</ul>
+</script>
+<script id="sysPageItem" type="text/html">
+		<% for (var pg in version) { %>
+			<li class="sys-page-item" data-pagecode="<%= pg %>">
+				<img data-src=<%= version[pg].imgSrc %> >
+				<h6><%= version[pg].pageName%></h6>
+				<a href=<%= version[pg].ui_URL%>>ui</a>
+				<a href=<%= version[pg].dev_URL%>>dev</a>
+			</li>
+		<%}%>
 </script>
 <script src="./site_map_offline.js"></script>
 </html>

@@ -8,27 +8,29 @@ overflow:hidden;}
 .sys-item h2{text-align:center;}
 .siteMap-manNav,.siteMap-content{padding-bottom:1000px;margin-bottom:-1000px;}
 .siteMap-manNav{float:left;padding-top:20px;margin-left:20px;}
-.nv_verson{text-align: center;}
-.verson_item{
+/*.nv_version{text-align: center;}*/
+.version_item{
+	display: inline-block;
+	color: #fff;
+}
+.version_item h4{
+	cursor:pointer;
 	padding: 3px 5px;
 	margin: 3px 5px;
-	display: inline-block;
-	background: #3385ff;
 	border-radius: 3px;
-	color: #fff;
-	cursor:pointer;
+	background: #3385ff;
 }
-.verson_item:hover{
+.version_item:hover h4{
 	background: #33B9FF
 }
-.verson_item.active{
+.version_item h4.active{
 	background: #F53F1E;
 	cursor: default;
 }
 .nav-item{/* padding:0 40px; */
 border-left:6px solid #eee;border-right:6px solid #eee;margin-bottom:5px;width:190px;transition:border-color .3s ease 0s,color .3s ease 0s;line-height:40px;cursor:pointer;text-indent:40px;}
 .nav-item.cur{color:#06c;font-weight:bold;border-color:#ccc;}
-.sys-pages-list{margin:20px 0 0 -10px;overflow:hidden;}
+.sys-pages-list{display:none;margin:20px 0 0 -10px;overflow:hidden;}
 .sys-page-item{float:left;width:200px;height:162px;overflow:hidden;padding:10px;margin-left:10px;margin-bottom:10px;background:#f0f0f0; /* font-size:16px; */}
 .sys-page-item:hover{background:#dcdcdc}
 .sys-page-item:hover a{background-color:#74a2de;color:#fff;}
