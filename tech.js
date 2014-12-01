@@ -1,11 +1,11 @@
 /**
  * 一个匿名函数
  */
-(function(){
+function(){
 	var _myName = 'ctripUED';
 	//do sth
 	console.log(_myName)
-})
+}
 
 /**
  * 一个简单的闭包
