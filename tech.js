@@ -132,6 +132,53 @@ var Person = function(name,age){
 }
 var p3 = new Person('p3',30);
 var p4 = new Person('p4',40);
-p3.say();	//'p3' 30
-p4.say();	//'p4' 40
-console.log(p3.say == p4.say)
+// p3.say();	//'p3' 30
+// p4.say();	//'p4' 40
+// console.log(p3.say == p4.say);
+
+/**
+ * 构造函数与原型混合模式模拟Man类
+ * @param {String} name
+ * @param {String} age
+ */
+var Man = function(name,age){
+	this.name = name;
+	this.age = age;
+}
+Man.prototype.say = function(){
+	console.log(this.name,this.age);
+};
+var m1 = new Man('m1',10);
+var m2 = new Man('m2',20);
+// m1.say();	//'m1' 10
+// m2.say();	//'m1' 20
+/**
+ * Car类
+ * @type {Object}
+ */
+var Car = {
+	getInstance:function(name){
+		var _o = {};
+		_o.name = name;
+		return _o;
+	}
+}
+var bmw = Car.getInstance('bmw');
+var toyota = Car.getInstance('toyota');
+// console.log(toyota.name);	//'toyota'
+// console.log(bmw.name);		//'bmw'
+
+/**
+ * 对象冒充+原型实现继承
+ * @param {String} name super
+ * @param {String} sex  super
+ * @param {String} color
+ */
+var  Fish = function(name,sex){
+	Animal.call(this,name,sex);
+	this.color = 'gold'
+}
+Fish.prototype = new Animal();
+Fish.prototype.constructor = Fish;
+
+var f1 = new Fish('f1',0);

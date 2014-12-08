@@ -205,7 +205,7 @@ Javascript语言不支持"类"，但是可以用一些变通的方法，模拟�
 
 1. 工厂模式
 2. 构造函数模式
-3. 原型模式
+3. 构造函数、原型混合模式
 4. minimalist approach
 5. ...
 
@@ -287,4 +287,66 @@ this.say = function(){
 
 ####原型模式
 
+```javascript
+/**
+ * 构造函数与原型混合模式模拟Man类
+ * @param {String} name
+ * @param {String} age
+ */
+var Man = function(name,age){
+	this.name = name;
+	this.age = age;
+}
+Man.prototype.say = function(){
+	console.log(this.name,this.age);
+};
+var m1 = new Man('m1',10);
+var m2 = new Man('m2',20);
+m1.say();	//'m1' 10
+m2.say();	//'m1' 20
+```
+缺点：
 
+coding很麻烦
+
+****
+
+####minimalist approach
+
+```javascript
+var Car = {
+	getInstance:function(name){
+		var _o = {};
+		_o.name = name;
+		return _o;
+	}
+}
+var bmw = Car.getInstance('bmw');
+var toyota = Car.getInstance('toyota');
+console.log(toyota.name);	//'toyota'
+console.log(bmw.name);		//'bmw'
+```
+
+利用闭包可以很方便的操作一些数据。
+继承也很好实现。
+
+##继承
+
+>“继承”是面向对象软件技术当中的一个概念。如果一个类A继承自另一个类B，就把这个A称为"B的子类"，而把B称为"A的父类"。继承可以使得子类具有父类的各种属性和方法，而不需要再次编写相同的代码。在令子类继承父类的同时，可以重新定义某些属性，并重写某些方法，即覆盖父类的原有属性和方法，使其获得与父类不同的功能。另外，为子类追加新的属性和方法也是常见的做法。
+
+####利用原型实现继承
+```javascript
+/**
+ * 对象冒充+原型实现继承
+ * @param {String} name super
+ * @param {String} sex  super
+ * @param {String} color
+ */
+var  Fish = function(name,sex){
+	Animal.call(this,name,sex);
+	this.color = 'gold'
+}
+Fish.prototype = new Animal();
+Fish.prototype.constructor = Fish;
+var f1 = new Fish('f1',0);
+```
