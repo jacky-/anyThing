@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>sort</title>
+</head>
+<body>
+	<input id="sort" type="button" value="小到大">
+	<input id="revert" type="button" value="大到小">
+	<ul id="list" class="list">
+		<li><span>1</span> 1</li>
+		<li><span>1</span> 2</li>
+		<li><span>2</span> 3</li>
+		<li><span>1</span> 4</li>
+		<li><span>1</span> 5</li>
+		<li><span>1</span> 6</li>
+		<li><span>1</span> 7</li>
+		<li><span>1</span> 8</li>
+		<li><span>1</span> 9</li>
+		<li><span>1</span> 10</li>
+		<li><span>1</span> 11</li>
+	</ul>
+</body>
+<!-- <script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.js"></script> -->
+<script src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
+<script src="sortTest.js"></script>
+<script>
+	$(function(){
+		var $list = $('#list');
+		var $sort = $('#sort');
+		var $revert = $('#revert');
+		var fn = function (rr){
+			var _$items = $list.find('li');
+			var its = [].bubbleSort.call(_$items,function(a,b){
+				if(rr===1){
+			// 小到大
+					return ($(b).find('span').html()-0)>($(a).find('span').html()-0)
+				}
+			// 大到小
+			if(rr===2){
+					return ($(a).find('span').html()-0)>($(b).find('span').html()-0)
+				}
+			});
+			$list.empty().append(_$items);
+		}
+		$sort.on('click',function(){
+			fn(1)
+		})
+		$revert.on('click',function(){
+			fn(2)
+		})
+
+	})
+</script>
+</html>
