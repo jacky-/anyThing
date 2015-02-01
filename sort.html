@@ -3,53 +3,65 @@
 <head>
 	<meta charset="UTF-8">
 	<title>sort</title>
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<input id="sort" type="button" value="小到大">
-	<input id="revert" type="button" value="大到小">
-	<ul id="list" class="list">
-		<li><span>1</span> 1</li>
-		<li><span>1</span> 2</li>
-		<li><span>2</span> 3</li>
-		<li><span>1</span> 4</li>
-		<li><span>1</span> 5</li>
-		<li><span>1</span> 6</li>
-		<li><span>1</span> 7</li>
-		<li><span>1</span> 8</li>
-		<li><span>1</span> 9</li>
-		<li><span>1</span> 10</li>
-		<li><span>1</span> 11</li>
+<div class="mainCont">
+	<div class="operation">
+		<a id="btnSort" class="btnSort sort" href="javascript:;">▲点击升序排列</a>
+		<span class="info" id="info"></span>
+	</div>
+	<ul class="list_data" id="list_data">
+		<li class="item_data"><i>￥</i><span class="price">10</span><span class="num">1</span></li>
+		<li class="item_data"><i>￥</i><span class="price">20</span><span class="num">2</span></li>
+		<li class="item_data"><i>￥</i><span class="price">10</span><span class="num">3</span></li>
+		<li class="item_data"><i>￥</i><span class="price">10</span><span class="num">4</span></li>
+		<li class="item_data"><i>￥</i><span class="price">10</span><span class="num">5</span></li>
+		<li class="item_data"><i>￥</i><span class="price">10</span><span class="num">6</span></li>
+		<li class="item_data"><i>￥</i><span class="price">10</span><span class="num">7</span></li>
+		<li class="item_data"><i>￥</i><span class="price">10</span><span class="num">8</span></li>
+		<li class="item_data"><i>￥</i><span class="price">10</span><span class="num">9</span></li>
+		<li class="item_data"><i>￥</i><span class="price">10</span><span class="num">10</span></li>
 	</ul>
+</div>
 </body>
-<!-- <script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.js"></script> -->
 <script src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
-<script src="sortTest.js"></script>
+<script src="./sortFun.js"></script>
 <script>
-	$(function(){
-		var $list = $('#list');
-		var $sort = $('#sort');
-		var $revert = $('#revert');
-		var fn = function (rr){
-			var _$items = $list.find('li');
-			var its = [].bubbleSort.call(_$items,function(a,b){
-				if(rr===1){
-			// 小到大
-					return ($(b).find('span').html()-0)>($(a).find('span').html()-0)
-				}
-			// 大到小
-			if(rr===2){
-					return ($(a).find('span').html()-0)>($(b).find('span').html()-0)
-				}
-			});
-			$list.empty().append(_$items);
+$(function(){
+	var $btnSort = $('#btnSort'),
+		$list_data = $('#list_data'),
+		$coll_items_data =$('.item_data'),
+		$info = $('#info');
+	var fnSortDom = function(flag){
+		var _$doms = $coll_items_data;
+		[].sort.call(_$doms,function(a,b){
+			console.log()
+			var temp = flag?($(a).find('.price').html()-0)-($(b).find('.price').html()-0):($(b).find('.price').html()-0)-($(a).find('.price').html()-0);
+			return temp;
+		});
+		console.log(_$doms)
+		return _$doms;
+	}
+	/**
+	 * 排序按钮点击事件
+	 * @param  {[boolean]} ){		var flag          [true 顺序; false 逆序]
+	 */
+	$btnSort.on('click',function(){
+		var flag = true;//顺序
+		$this = $(this);
+		if($this.hasClass('sort')){
+			$this.removeClass('sort').addClass('revert').html('▼点击降序排列');
+			$info.html('已按价格升序排列所有数据');
+			flag = true;
+		}else if($this.hasClass('revert')){
+			$this.removeClass('revert').addClass('sort').html('▲点击升序排列');
+			$info.html('已按价格降序排列所有数据');
+			flag = false;
 		}
-		$sort.on('click',function(){
-			fn(1)
-		})
-		$revert.on('click',function(){
-			fn(2)
-		})
-
-	})
+		var _$sortDoms = fnSortDom(flag);
+		$list_data.empty().append(_$sortDoms);
+	});
+})
 </script>
 </html>
