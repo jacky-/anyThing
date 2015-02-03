@@ -12,7 +12,7 @@
 		<span class="info" id="info"></span>
 	</div>
 	<ul class="list_data" id="list_data">
-		<li class="item_data"><i>￥</i><span class="price">10</span><span class="num">1</span></li>
+		<!-- <li class="item_data"><i>￥</i><span class="price">10</span><span class="num">1</span></li>
 		<li class="item_data"><i>￥</i><span class="price">20</span><span class="num">2</span></li>
 		<li class="item_data"><i>￥</i><span class="price">10</span><span class="num">3</span></li>
 		<li class="item_data"><i>￥</i><span class="price">10</span><span class="num">4</span></li>
@@ -22,33 +22,46 @@
 		<li class="item_data"><i>￥</i><span class="price">10</span><span class="num">8</span></li>
 		<li class="item_data"><i>￥</i><span class="price">10</span><span class="num">9</span></li>
 		<li class="item_data"><i>￥</i><span class="price">10</span><span class="num">10</span></li>
+		<li class="item_data"><i>￥</i><span class="price">10</span><span class="num">11</span></li>
+		<li class="item_data"><i>￥</i><span class="price">10</span><span class="num">12</span></li>
+		<li class="item_data"><i>￥</i><span class="price">10</span><span class="num">13</span></li> -->
 	</ul>
 </div>
 </body>
 <script src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
+<script src="./art-template.js"></script>
 <script src="./sortFun.js"></script>
+<script id="test" type="text/html">
+	<li class="item_data"><i>￥</i><span class="price">10</span><span class="num">1</span></li>
+	<li class="item_data"><i>￥</i><span class="price">20</span><span class="num">2</span></li>
+ <%for (var i=0;i<350;i++) {%>
+	<li class="item_data"><i>￥</i><span class="price">10</span><span class="num"><%=i+3%></span></li>
+ <%}%>
+</script>
 <script>
 $(function(){
-	var $btnSort = $('#btnSort'),
+	var _html = template('test'),
 		$list_data = $('#list_data'),
-		$coll_items_data =$('.item_data'),
+		$btnSort = $('#btnSort'),
 		$info = $('#info');
+	$list_data.html(_html);
 	var fnSortDom = function(flag){
-		var _$doms = $coll_items_data;
-		[].sort.call(_$doms,function(a,b){
-			console.log()
-			var temp = flag?($(a).find('.price').html()-0)-($(b).find('.price').html()-0):($(b).find('.price').html()-0)-($(a).find('.price').html()-0);
+		var _$doms = $list_data.find('.item_data');
+		var oDate = new Date();
+		var newDoms = [].insertSort.call(_$doms,function(a,b){
+			var temp = flag?($(a).find('.price').html()-0)>($(b).find('.price').html()-0):($(b).find('.price').html()-0)>($(a).find('.price').html()-0);
 			return temp;
 		});
-		console.log(_$doms)
-		return _$doms;
+		var  nDate = new Date();
+		alert(nDate-oDate)
+		return newDoms;
 	}
 	/**
 	 * 排序按钮点击事件
 	 * @param  {[boolean]} ){		var flag          [true 顺序; false 逆序]
 	 */
 	$btnSort.on('click',function(){
-		var flag = true;//顺序
+		var flag,$this;//顺序
 		$this = $(this);
 		if($this.hasClass('sort')){
 			$this.removeClass('sort').addClass('revert').html('▼点击降序排列');
