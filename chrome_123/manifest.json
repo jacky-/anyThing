@@ -1,0 +1,14 @@
+{
+	"manifest_version": 2,
+	"name": "自定义导航",
+	"description": "a currently clone",
+	"version": "0.1",
+	// "options_page": "options.html",
+	// "browser_action": {
+	// 	"default_title": "stock helper",
+	// 	"default_popup": "popup.html"
+	// },
+	"chrome_url_overrides": {
+		"newtab": "tab.html"
+	}
+}
